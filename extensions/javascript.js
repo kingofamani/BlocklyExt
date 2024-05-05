@@ -1,0 +1,335 @@
+/*
+=========================================
+=				basicBlock				=
+=========================================
+*/
+Blockly.Arduino['amani_tm1637_show'] = function(block) {
+  var value_clk = Blockly.Arduino.valueToCode(block, 'clk', Blockly.Arduino.ORDER_ATOMIC);
+  var value_dio = Blockly.Arduino.valueToCode(block, 'dio', Blockly.Arduino.ORDER_ATOMIC);
+  var value_num = Blockly.Arduino.valueToCode(block, 'num', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_leading_zero = block.getFieldValue('leading_zero');
+  // TODO: Assemble Arduino into code variable.
+Blockly.Arduino.definitions_['amani_tm1637_show'] = '#include <TM1637Display.h>\n';
+  Blockly.Arduino.definitions_['amani_tm1637_show' + value_clk + value_dio ] = 'TM1637Display tm_display' +value_clk +value_dio+'('+value_clk+', ' + value_dio+'); ';
+Blockly.Arduino.setups_['amani_tm1637_show' + value_clk + value_dio] = 'tm_display'+ value_clk+ value_dio+'.setBrightness(7); \n '+'tm_display' +value_clk +value_dio+'.clear(); \n ';
+var code ='tm_display' +value_clk +value_dio+'.showNumberDec('+value_num+', ' +dropdown_leading_zero+'); \n ';
+
+  
+  return code;
+};
+
+Blockly.Arduino['amani_tm1637_colon'] = function(block) {
+  var value_clk = Blockly.Arduino.valueToCode(block, 'clk', Blockly.Arduino.ORDER_ATOMIC);
+  var value_dio = Blockly.Arduino.valueToCode(block, 'dio', Blockly.Arduino.ORDER_ATOMIC);
+  var value_num1 = Blockly.Arduino.valueToCode(block, 'num1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_num2 = Blockly.Arduino.valueToCode(block, 'num2', Blockly.Arduino.ORDER_ATOMIC);
+  // TODO: Assemble Arduino into code variable.
+  Blockly.Arduino.definitions_['amani_tm1637_show'] = '#include <TM1637Display.h>\n';
+  Blockly.Arduino.definitions_['amani_tm1637_show' + value_clk + value_dio ] = 'TM1637Display tm_display' +value_clk +value_dio+'('+value_clk+', ' + value_dio+'); ';
+  Blockly.Arduino.setups_['amani_tm1637_show' + value_clk + value_dio] = 'tm_display'+ value_clk+ value_dio+'.setBrightness(7); \n '+'tm_display' +value_clk +value_dio+'.clear(); \n ';
+  var code =
+'tm_display'+value_clk+ value_dio+'.showNumberDecEx('+value_num1+', 0x40, true, 2, 0); \n'+
+'tm_display'+value_clk +value_dio+'.showNumberDecEx('+value_num2+',  0, true,  2, 2); \n ';
+  
+  return code;
+};
+
+Blockly.Arduino['amani_tm1637_clear'] = function(block) {
+  var value_clk = Blockly.Arduino.valueToCode(block, 'clk', Blockly.Arduino.ORDER_ATOMIC);
+  var value_dio = Blockly.Arduino.valueToCode(block, 'dio', Blockly.Arduino.ORDER_ATOMIC);
+  // TODO: Assemble Arduino into code variable.
+  var code ='tm_display' +value_clk +value_dio+'.clear();\n ';
+  return code;
+};
+
+Blockly.Arduino['amani_st7920lcd_string'] = function(block) {
+  var value_row = Blockly.Arduino.valueToCode(block, 'row', Blockly.Arduino.ORDER_ATOMIC);
+  var value_col = Blockly.Arduino.valueToCode(block, 'col', Blockly.Arduino.ORDER_ATOMIC);
+  var value_str = Blockly.Arduino.valueToCode(block, 'str', Blockly.Arduino.ORDER_ATOMIC);
+  // TODO: Assemble Arduino into code variable.
+  Blockly.Arduino.definitions_['amani_st7920lcd_string'] = '#include "LCD12864RSPI.h"\n#define AR_SIZE( a ) sizeof( a ) / sizeof( a[0] )\n';
+  Blockly.Arduino.setups_['amani_st7920lcd_string'] = 'LCDA.Initialise();\ndelay(100);\n';
+  var code ='LCDA.DisplayString('+ (value_row-1)+ ', ' +(value_col-1)+ ', ' +value_str+', AR_SIZE('+ value_str+'));\n';
+
+  return code;
+};
+
+Blockly.Arduino['amani_st7920lcd_clear'] = function(block) {
+  // TODO: Assemble Arduino into code variable.
+  var code ='LCDA.CLEAR();\n';
+  
+  return code;
+};
+
+Blockly.Arduino['amani_random'] = function(block) {
+  var value_min = Blockly.Arduino.valueToCode(block, 'min', Blockly.Arduino.ORDER_ATOMIC);
+  var value_max = Blockly.Arduino.valueToCode(block, 'max', Blockly.Arduino.ORDER_ATOMIC);
+  value_max++;
+  // TODO: Assemble Arduino into code variable.
+  Blockly.Arduino.setups_['amani_random'] = 'randomSeed(analogRead(0));\n';
+  var code ='random('+value_min+',' + value_max +')';
+  
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amani_stepmoter_go'] = function(block) {
+  var value_in1 = Blockly.Arduino.valueToCode(block, 'in1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_in2 = Blockly.Arduino.valueToCode(block, 'in2', Blockly.Arduino.ORDER_ATOMIC);
+  var value_in3 = Blockly.Arduino.valueToCode(block, 'in3', Blockly.Arduino.ORDER_ATOMIC);
+  var value_in4 = Blockly.Arduino.valueToCode(block, 'in4', Blockly.Arduino.ORDER_ATOMIC);
+  var value_c = Blockly.Arduino.valueToCode(block, 'c', Blockly.Arduino.ORDER_ATOMIC);
+  // TODO: Assemble Arduino into code variable.
+  Blockly.Arduino.definitions_['amani_stepmoter_go'] = '#include <Stepper.h>\nint steps=2048;\n';
+Blockly.Arduino.definitions_['amani_stepmoter_go' + value_in1 + value_in2 ] = 'Stepper myStepper' +value_in1+ value_in2+ value_in3 +value_in4+'(steps, ' +value_in1+ ', ' +value_in3 +', '+ value_in2 +', ' +value_in4+ '); ';
+Blockly.Arduino.setups_['amani_stepmoter_go' + value_in1 + value_in2] = 'myStepper'+ value_in1+ value_in2+ value_in3+ value_in4 +'.setSpeed(12);\n ';
+Blockly.Arduino.functions_['amani_stepmoter_go'] = 'void go(float c,Stepper stepper) {\n  int num = ((abs(c)) * 8) - 1;\n  for (int i = 0; i <= num; i++) {\n    if (c >= 0) {\n      stepper.step(256);\n    } else {\n      stepper.step(-256);\n    }\n  }\n  delay(1000);\n}\n';
+var code ='go('+value_c+', myStepper'+ value_in1+ value_in2+ value_in3+ value_in4 +'); \n ';
+
+  
+  return code;
+};
+
+Blockly.Arduino['amani_joystick_init'] = function(block) {
+  var dropdown_xpin = block.getFieldValue('xPin');
+  var dropdown_ypin = block.getFieldValue('yPin');
+  var value_swpin = Blockly.Arduino.valueToCode(block, 'swPin', Blockly.Arduino.ORDER_ATOMIC);
+  // TODO: Assemble Arduino into code variable.
+  Blockly.Arduino.definitions_['amani_joystick_init'] = 'int joystick_xVal = analogRead(' +dropdown_ypin +');// vY腳位\n'+'int joystick_yVal = analogRead(' +dropdown_xpin +');// vX腳位\n '+'int joystick_swVal = digitalRead('+ value_swpin+ '); \n ';
+  
+  Blockly.Arduino.setups_['amani_joystick_init'] = 'pinMode('+value_swpin+', INPUT_PULLUP);\n ';
+  
+  Blockly.Arduino.functions_['amani_joystick_init'] = 'bool is_this_direct(String direct){\n  return direct == joystick_direct();\n}\nString joystick_direct(){\n  joystick_xVal = analogRead('+dropdown_ypin +');\n  joystick_yVal = analogRead(' +dropdown_xpin +');\n  String xDirect = "";\n  String yDirect = "";  \n  if (joystick_xVal < 480) {\n    xDirect="Left";\n  } else if (joystick_xVal > 520) {\n    xDirect="Right";\n  }  \n  if (joystick_yVal < 480) {\n    yDirect ="Down";\n  } else if (joystick_yVal > 520) {\n    yDirect ="Up";\n  }\n  return xDirect+yDirect;\n}\nbool is_click_sw(){\n  joystick_swVal = digitalRead('+ value_swpin+ ');\n  return !joystick_swVal;\n}\n';
+  
+  var code ='';
+  return code;
+};
+
+Blockly.Arduino['amani_joystick_switch'] = function(block) {
+  // TODO: Assemble Arduino into code variable.
+  var code ='is_click_sw()';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['amani_joystick_direct'] = function(block) {
+  var dropdown_direct = block.getFieldValue('direct');
+  // TODO: Assemble Arduino into code variable.
+  var code ='is_this_direct("'+dropdown_direct+'") ';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+/*
+=========================================
+=			i2cKeypadBlock				=
+=========================================
+*/
+Blockly.Arduino['_01amani_i2ckeypad_init'] = function(block) {
+  Blockly.Arduino.definitions_['_01amani_i2ckeypad_init'] = '#include <Wire.h>\nchar i2cKey = \'\\0\';  //不能是null\n';
+
+  Blockly.Arduino.setups_['_01amani_i2ckeypad_init'] = 'Wire.begin();\n';
+  
+  Blockly.Arduino.functions_['_01amani_i2ckeypad_init'] = 'void keypadLoop() {\n  volatile int code;\n  Wire.beginTransmission(0x27);\n  Wire.write(3);\n  Wire.endTransmission();\n  Wire.requestFrom(0x27, 1);\n  while (Wire.available()) {\n    char code = Wire.read();\n    if (code != 16) {\n      i2cKey = getKeyChar(code);\n    }\n  }\n}\nchar getKeyChar(char code) {\n  char keys[16] = {\n    \'0\', \'1\', \'2\', \'3\',\n    \'4\', \'5\', \'6\', \'7\',\n    \'8\', \'9\', \'A\', \'B\',\n    \'C\', \'D\', \'*\', \'#\'\n  };\n  return keys[code];\n}\nint charToInt(char c) {\n  int num = c - \'0\';\n  return num;\n}\nboolean checkIsNumber(char key) {\n  char N[] = "1234567890";\n  //一定要大寫NULL\n  if ((strchr(N, key)) != (NULL)) {\n    return (true);\n  } else {\n    return (false);\n  }\n}\n';
+
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['_02amani_i2ckeypad_loop'] = function(block) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'keypadLoop();'+'\n';
+
+  return code;
+};
+
+Blockly.Arduino['_03amani_i2ckeypad_iskey'] = function(block) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'i2cKey !=\'\\0\'';
+
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['_04amani_i2ckeypad_key'] = function(block) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'i2cKey';
+
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['_05amani_i2ckeypad_keynull'] = function(block) {
+  // TODO: Assemble javascript into code variable.
+  var code = 'i2cKey =\'\\0\';'+'\n';
+
+  return code;
+};
+
+Blockly.Arduino['_06amani_i2ckeypad_funcnum'] = function(block) {
+  // TODO: Assemble javascript into code variable.  
+  var value_c = Blockly.Arduino.valueToCode(block, 'c', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'charToInt('+value_c+')';
+
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+Blockly.Arduino['_07amani_i2ckeypad_isnum'] = function(block) {
+  // TODO: Assemble javascript into code variable.  
+  var value_c = Blockly.Arduino.valueToCode(block, 'c', Blockly.Arduino.ORDER_ATOMIC);
+  
+  var code = 'checkIsNumber('+value_c+')';
+
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Arduino.ORDER_NONE];
+};
+
+/*
+=========================================
+=			simpleTimerBlock			=
+=========================================
+*/
+Blockly.Arduino['_01amani_simpletimer_setinteval'] = function(block) {
+  var dropdown_order = block.getFieldValue('order');  
+  var value_ms = Blockly.Arduino.valueToCode(block, 'ms', Blockly.Arduino.ORDER_ATOMIC);
+  var statements_msg = Blockly.Arduino.statementToCode(block, 'msg');
+
+  //定義區
+  Blockly.Arduino.definitions_['_00amani_simpletimer'] =
+`#include <SimpleTimer.h>
+SimpleTimer timer;`;
+  
+  //loop區
+  Blockly.Arduino.loops_['_00amani_simpletimer'] =   'timer.run();\n';  
+
+  //每隔n秒觸發1次
+  Blockly.Arduino.setups_['_01amani_simpletimer_setinteval'+dropdown_order] =   'timer.setInterval('+value_ms+', timerFunc'+dropdown_order+');\n';
+
+  Blockly.Arduino.functions_['_01amani_simpletimer_setinteval'+dropdown_order] =   'void timerFunc'+dropdown_order+'(){\n ' + statements_msg + '  }\n ';
+  
+  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['_02amani_simpletimer_setinteval_id'] = function(block) {
+  
+  var value_ms = Blockly.Arduino.valueToCode(block, 'ms', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_order = block.getFieldValue('order');  
+  var statements_msg = Blockly.Arduino.statementToCode(block, 'msg');
+  //計算總共拖曳幾個timer積木
+  let intevalFunc = "intevalFunc"+dropdown_order;
+  let intevalId = "inteval_ID"+dropdown_order;
+  
+  //定義區
+  Blockly.Arduino.definitions_['_00amani_simpletimer'] =
+`#include <SimpleTimer.h>
+SimpleTimer timer;`;
+  
+  Blockly.Arduino.definitions_['_02amani_simpletimer_setinteval_id'+dropdown_order] =
+`int ${intevalId} = 0;`;
+  
+  //loop區
+  Blockly.Arduino.loops_['_00amani_simpletimer'] =
+  `timer.run();`;
+  
+
+  //每隔n秒觸發1次，且可設定enable、disable
+  Blockly.Arduino.setups_['_02amani_simpletimer_setinteval_id'+dropdown_order] =
+`${intevalId} = timer.setInterval(${value_ms}, ${intevalFunc});
+timer.disable(${intevalId});  
+`;
+
+  Blockly.Arduino.functions_['_02amani_simpletimer_setinteval_id'+dropdown_order] =   'void '+intevalFunc+'(){\n ' + statements_msg + '  }\n ';
+  
+  
+  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['_03amani_simpletimer_setinteval_enable'] = function(block) {
+  var dropdown_order = block.getFieldValue('order');  
+  var dropdown_switch = block.getFieldValue('switch');
+  
+  let intevalId = "inteval_ID"+dropdown_order;
+  
+  //loop區
+  Blockly.Arduino.loops_['_00amani_simpletimer'] =
+  `timer.run();`;
+  
+  var code = '';
+  if(dropdown_switch=="enable"){
+	code = 
+`timer.enable(${intevalId});
+`;
+  }else if(dropdown_switch=="disable"){
+	code = 
+`timer.disable(${intevalId});
+`;
+  }  
+  
+  return code;
+};
+
+Blockly.Arduino['_04amani_simpletimer_settimeout'] = function(block) {
+  
+  var value_ms = Blockly.Arduino.valueToCode(block, 'ms', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_order = block.getFieldValue('order');  
+  var statements_msg = Blockly.Arduino.statementToCode(block, 'msg');
+  //計算總共拖曳幾個timer積木
+  let func = "timeoutFunc"+dropdown_order;
+  let intevalId = "timeout_ID"+dropdown_order;
+  
+  //定義區
+  Blockly.Arduino.definitions_['_00amani_simpletimer'] =
+`#include <SimpleTimer.h>
+SimpleTimer timer;`;
+  
+  //loop區
+  Blockly.Arduino.loops_['_00amani_simpletimer'] =
+  `timer.run();`;
+  
+
+  //n秒後觸發1次，只有1次
+  Blockly.Arduino.setups_['_04amani_simpletimer_settimeout'+dropdown_order] =
+`timer.setTimeout(${value_ms}, ${func});`;
+
+  Blockly.Arduino.functions_['_04amani_simpletimer_settimeout'+dropdown_order] =   'void '+func+'(){\n ' + statements_msg + '  }\n ';
+    
+  
+  var code = '';
+  return code;
+};
+
+Blockly.Arduino['_05amani_simpletimer_settimer'] = function(block) {
+  
+  var value_ms = Blockly.Arduino.valueToCode(block, 'ms', Blockly.Arduino.ORDER_ATOMIC);
+  var value_times = Blockly.Arduino.valueToCode(block, 'times', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_order = block.getFieldValue('order');  
+  var statements_msg = Blockly.Arduino.statementToCode(block, 'msg');
+  //計算總共拖曳幾個timer積木
+  let func = "setTimerFunc"+dropdown_order;
+  
+  //定義區
+  Blockly.Arduino.definitions_['_00amani_simpletimer'] =
+`#include <SimpleTimer.h>
+SimpleTimer timer;`;
+  
+  //loop區
+  Blockly.Arduino.loops_['_00amani_simpletimer'] =
+  `timer.run();`;
+  
+
+  //n秒後觸發1次，只有1次
+  Blockly.Arduino.setups_['_05amani_simpletimer_settimer'+dropdown_order] =
+`timer.setTimer(${value_ms}, ${func}, ${value_times});`;
+
+  Blockly.Arduino.functions_['_05amani_simpletimer_settimer'+dropdown_order] =   'void '+func+'(){\n ' + statements_msg + '  }\n ';
+    
+  
+  var code = '';
+  return code;
+};

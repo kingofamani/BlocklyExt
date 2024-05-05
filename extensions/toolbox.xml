@@ -1,0 +1,169 @@
+<category name="阿曼尼" colour="#5ba58c">
+  <category name="基本" colour="#5b80a5">
+    <block type="amani_tm1637_show">
+      <field name="leading_zero">true</field>
+      <value name="clk">
+        <block type="math_number">
+          <field name="NUM">2</field>
+        </block>
+      </value>
+      <value name="dio">
+        <block type="math_number">
+          <field name="NUM">3</field>
+        </block>
+      </value>
+      <value name="num">
+        <block type="math_number">
+          <field name="NUM">1234</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_tm1637_colon">
+      <value name="clk">
+        <block type="math_number">
+          <field name="NUM">2</field>
+        </block>
+      </value>
+      <value name="dio">
+        <block type="math_number">
+          <field name="NUM">3</field>
+        </block>
+      </value>
+      <value name="num1">
+        <block type="math_number">
+          <field name="NUM">12</field>
+        </block>
+      </value>
+      <value name="num2">
+        <block type="math_number">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_tm1637_clear">
+      <value name="clk">
+        <block type="math_number">
+          <field name="NUM">2</field>
+        </block>
+      </value>
+      <value name="dio">
+        <block type="math_number">
+          <field name="NUM">3</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_st7920lcd_string">
+      <value name="row">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="col">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_st7920lcd_clear"></block>
+    <block type="amani_stepmoter_go">
+      <value name="in1">
+        <block type="math_number">
+          <field name="NUM">8</field>
+        </block>
+      </value>
+      <value name="in2">
+        <block type="math_number">
+          <field name="NUM">9</field>
+        </block>
+      </value>
+      <value name="in3">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+      <value name="in4">
+        <block type="math_number">
+          <field name="NUM">11</field>
+        </block>
+      </value>
+      <value name="c">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_random">
+      <value name="min">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="max">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_joystick_init">
+      <field name="xPin">A5</field>
+      <field name="yPin">A0</field>
+      <value name="swPin">
+        <block type="math_number">
+          <field name="NUM">12</field>
+        </block>
+      </value>
+    </block>
+    <block type="amani_joystick_switch"></block>
+    <block type="amani_joystick_direct">
+      <field name="direct">Up</field>
+    </block>
+  </category>
+  
+    <category name="4x4鍵盤(I2C)" colour="#a55b80">
+    <block type="_01amani_i2ckeypad_init"></block>
+    <block type="_02amani_i2ckeypad_loop"></block>
+    <block type="_03amani_i2ckeypad_iskey"></block>
+    <block type="_04amani_i2ckeypad_key"></block>
+    <block type="_05amani_i2ckeypad_keynull"></block>
+    <block type="_06amani_i2ckeypad_funcnum"></block>
+	<block type="_07amani_i2ckeypad_isnum"></block>
+  </category>
+  
+  <category name="計時器" colour="#9fa55b">
+    <block type="_01amani_simpletimer_setinteval">
+      <value name="ms">
+        <block type="math_number">
+          <field name="NUM">1000</field>
+        </block>
+      </value>
+    </block>
+	<block type="_02amani_simpletimer_setinteval_id">
+      <value name="ms">
+        <block type="math_number">
+          <field name="NUM">1000</field>
+        </block>
+      </value>
+    </block>
+	<block type="_03amani_simpletimer_setinteval_enable" ></block>
+	<block type="_04amani_simpletimer_settimeout" >
+		<value name="ms">
+        <block type="math_number">
+          <field name="NUM">1000</field>
+        </block>
+      </value>
+	</block>
+	<block type="_05amani_simpletimer_settimer" >
+		<value name="ms">
+        <block type="math_number">
+          <field name="NUM">1000</field>
+        </block>
+      </value>
+	  <value name="times">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+	</block>
+  </category>
+  
+</category>

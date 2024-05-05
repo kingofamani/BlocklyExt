@@ -1,5 +1,5 @@
-<category name="阿曼尼" colour="#5b80a5">
-  <category name="基本" colour="#5b80a5">
+<category name="cat_amani" colour="#5b80a5">
+  <category name="cat_basic" colour="#5b80a5">
     <block type="amani_tm1637_show">
       <field name="leading_zero">true</field>
       <value name="clk">
@@ -119,7 +119,7 @@
     </block>
   </category>
 
-<category name="4x4鍵盤(I2C)" colour="#a55b80">
+<category name="cat_4x4keypad" colour="#a55b80">
   <block type="_01amani_i2ckeypad_init"></block>
   <block type="_02amani_i2ckeypad_loop"></block>
   <block type="_03amani_i2ckeypad_iskey"></block>
@@ -129,7 +129,7 @@
   <block type="_07amani_i2ckeypad_isnum"></block>
 </category>
 
-  <category name="計時器" colour="#9fa55b">
+  <category name="cat_simple_timer" colour="#9fa55b">
     <block type="_01amani_simpletimer_setinteval">
       <value name="ms">
         <block type="math_number">

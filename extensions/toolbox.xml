@@ -165,26 +165,28 @@
       </value>
 	</block>
   </category>
+ 
+	<category name="cat_line_message_api" colour="#5b80a5">
+		<block type="_01amani_linepushapi_init">
+		<value name="userid">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+		<value name="token">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	  <block type="_02amani_linepushapi_msg">
+		<value name="msg">
+		  <block type="text">
+			<field name="TEXT"></field>
+		  </block>
+		</value>
+	  </block>
+	</category>
 </category>
 
-<category name="cat_line_message_api" colour="#5b80a5">
-    <block type="_01amani_linepushapi_init">
-    <value name="userid">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-    <value name="token">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-  </block>
-  <block type="_02amani_linepushapi_msg">
-    <value name="msg">
-      <block type="text">
-        <field name="TEXT"></field>
-      </block>
-    </value>
-  </block>
-</category>
+

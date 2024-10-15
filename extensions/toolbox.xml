@@ -147,6 +147,13 @@
   <block type="_04amani_esp32joystick_sw">
     <field name="order">1</field>
   </block>
+  
+    <block type="_01amani_serial_avail">
+    <field name="serial">Serial</field>
+  </block>
+  <block type="_02amani_serial_readstring">
+    <field name="serial">Serial</field>
+  </block>
   </category>
 
 <category name="cat_4x4keypad" colour="#a55b80">

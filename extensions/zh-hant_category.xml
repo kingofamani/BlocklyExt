@@ -1,5 +1,5 @@
 <xml>
-<category><name>cat_amani</name><replace>阿曼尼</replace></category>
+<category><name>cat_amani</name><replace>阿曼尼積木</replace></category>
 <category><name>cat_basic</name><replace>基本</replace></category>
 <category><name>cat_4x4keypad</name><replace>4x4鍵盤(I2C)</replace></category>
 <category><name>cat_simple_timer</name><replace>計時器</replace></category>

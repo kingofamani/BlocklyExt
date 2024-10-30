@@ -349,7 +349,7 @@ Blockly.Blocks['_01amani_uart_init'] = {
 	this.setInputsInline(true);
 	this.setPreviousStatement(!0);
 	this.setNextStatement(!0);
-	this.setColour(225);
+	this.setColour(315);
   },
   validate: function(newValue) {
 	 const block = this.sourceBlock_;
@@ -372,7 +372,7 @@ Blockly.Blocks['_02amani_uart_get'] = {
         .appendField("讀取完整的字串");   
 	this.setInputsInline(true);
     this.setOutput(true, null);  
-    this.setColour(225);
+    this.setColour(315);
   }
 };
 
@@ -400,7 +400,7 @@ Blockly.Blocks['_03amani_uart_send'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(225);
+    this.setColour(315);
  this.setTooltip("");
  this.setHelpUrl("");
   }

@@ -252,6 +252,44 @@
     </value>
     </block>
   </category>
+  
+  <category name="cat_adafruitio" colour="345">
+  <block type="amani_adafruit_io_mqtt_init">
+    <value name="USERNAME">
+      <shadow type="text">
+        <field name="TEXT">"您的使用者名稱"</field>
+      </shadow>
+    </value>
+    <value name="KEY">
+      <shadow type="text">
+        <field name="TEXT">"您的金鑰"</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="amani_adafruit_io_publish">
+    <value name="FEED_NAME">
+      <shadow type="text">
+        <field name="TEXT"></field>
+      </shadow>
+    </value>
+    <value name="MESSAGE">
+      <shadow type="text">
+        <field name="TEXT"></field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="amani_mqtt_subscribe">
+    <value name="feedname">
+      <shadow type="text">
+        <field name="TEXT">home/light/status</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="amani_mqtt_received_string"></block>
+</category>
 </category>
 
 

@@ -480,3 +480,113 @@ Blockly.Arduino['_02amani_linepushapi_msg'] = function(block) {
   var code = 'pushLineMessage('+value_msg+');'+'\n';
   return code;
 };
+
+/*
+=========================================
+=			Adafruit IO MQTT			=
+=========================================
+*/
+
+Blockly.JavaScript['amani_adafruit_io_mqtt_init'] = function(block) {
+  // 獲取輸入值
+  var username = Blockly.JavaScript.valueToCode(block, 'USERNAME', Blockly.JavaScript.ORDER_ATOMIC);
+  var key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
+
+  // 1. Blockly.Arduino.definitions: 定義區
+  Blockly.Arduino.definitions_['define_adafruitio'] = `
+    #include <AdafruitIO_WiFi.h>
+    #define IO_USERNAME ${username}
+    #define IO_KEY ${key}
+    AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+  `;
+
+  // 2. Blockly.Arduino.setups: 初始化區
+  Blockly.Arduino.setups_['setup_adafruitio'] = `
+    io.connect();
+    while (io.status() < AIO_CONNECTED) {
+      Serial.print(".");
+      delay(500);
+    }
+  `;
+
+  // 3. Blockly.Arduino.functions: 函數宣告區
+  // 本範例中不需要額外函數，如有可添加
+
+  // 4. Blockly.Arduino.loops: 主程式迴圈區
+  Blockly.Arduino.loops_['loop_adafruitio'] = `
+    io.run();
+  `;
+
+  // 返回空字串，因為程式碼已分配到 loops 區域
+  return '';
+};
+
+Blockly.JavaScript['amani_adafruit_io_publish'] = function(block) {
+  // 獲取輸入值
+  var feedName = Blockly.JavaScript.valueToCode(block, 'FEED_NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  var message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+
+  // 為每個積木生成獨立的固定 timestamp
+  if (!block.fixedTimestamp) {
+    block.fixedTimestamp = Date.now(); // 只為該積木生成一次
+  }
+  var timestamp = block.fixedTimestamp;
+  var variableName = feedName + "_" + timestamp;
+
+  // 1. Blockly.Arduino.definitions: 定義區
+  Blockly.Arduino.definitions_['define_feed_' + variableName] = 
+    "AdafruitIO_Feed *feedName" + timestamp + " = io.feed(" + feedName + ");";
+
+  // 2. Blockly.Arduino.setups: 初始化區
+  // 此積木不需要修改 setup()
+
+  // 3. Blockly.Arduino.functions: 函數宣告區
+  // 此積木不需要新增函數
+
+  // 4. Blockly.Arduino.loops: 主程式迴圈區
+  // 移除舊的 loop 塊程式碼，改用 code 直接返回
+  var code = "feedName" + timestamp+ "->save(" + message + ");\n";
+
+  return code;
+};
+
+Blockly.JavaScript['amani_mqtt_subscribe'] = function(block) {
+  // 獲取輸入值
+  var feedName = Blockly.JavaScript.valueToCode(block, 'feedname', Blockly.JavaScript.ORDER_ATOMIC);
+
+  // 為每個積木生成獨立的固定 timestamp
+  if (!block.fixedTimestamp) {
+    block.fixedTimestamp = Date.now(); // 只為該積木生成一次
+  }
+  var timestamp = block.fixedTimestamp;
+
+  // 設定唯一的變數名稱和回調函數名稱
+  var uniqueFeedName = "feedName_" + timestamp;
+  var callbackFunctionName = "handleMessage_" + timestamp;
+
+  // 嵌套的程式碼
+  var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
+
+  // 1. Blockly.Arduino.definitions: 定義區
+  Blockly.Arduino.definitions_['define_feed_' + feedName] =
+    "AdafruitIO_Feed *" + uniqueFeedName + " = io.feed(" + feedName + ");";
+
+  Blockly.Arduino.definitions_['define_callback_' + feedName] =
+    "void " + callbackFunctionName + "(AdafruitIO_Data *data) {\n" +
+    statements_statement + // 嵌套的動作程式碼
+    "}\n";
+
+  // 2. Blockly.Arduino.setups: 初始化區
+  Blockly.Arduino.setups_['setup_feed_' + feedName] =
+    uniqueFeedName + "->onMessage(" + callbackFunctionName + ");";
+
+  // 此積木的功能已包含在定義與設置中，無需額外返回程式碼
+  return '';
+};
+
+Blockly.JavaScript['amani_mqtt_received_string'] = function(block) {
+  var code = "data->value()";
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+

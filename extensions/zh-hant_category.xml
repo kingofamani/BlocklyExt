@@ -4,4 +4,5 @@
 <category><name>cat_4x4keypad</name><replace>4x4鍵盤(I2C)</replace></category>
 <category><name>cat_simple_timer</name><replace>計時器</replace></category>
 <category><name>cat_line</name><replace>LINE PUSH API通知</replace></category>
+<category><name>cat_adafruitio</name><replace>Adafruit IO MQTT</replace></category>
 </xml>

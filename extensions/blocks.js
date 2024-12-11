@@ -652,3 +652,75 @@ Blockly.Blocks['_02amani_linepushapi_msg'] = {
  this.setHelpUrl("");
   }
 };
+
+
+/*
+=========================================
+=			Adafruit IO MQTT			=
+=========================================
+*/
+
+Blockly.Blocks['amani_adafruit_io_mqtt_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Adafruit IO MQTT 初始化");
+    this.appendValueInput("USERNAME")
+        .setCheck("String")
+        .appendField("使用者名稱");
+    this.appendValueInput("KEY")
+        .setCheck("String")
+        .appendField("金鑰");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345); // 設置顏色為 345
+    this.setTooltip("初始化 Adafruit IO MQTT，需提供使用者名稱與金鑰");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['amani_adafruit_io_publish'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Adafruit IO 發佈訊息");
+    this.appendValueInput("FEED_NAME")
+        .setCheck("String")
+        .appendField("Feeds 名稱");
+    this.appendValueInput("MESSAGE")
+        .setCheck("String")
+        .appendField("訊息");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(345); // 設置顏色為 345
+    this.setTooltip("發佈訊息到指定的 Adafruit IO Feed");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['amani_mqtt_subscribe'] = {
+  init: function() {
+    this.appendValueInput("feedname")
+        .setCheck(null)
+        .appendField("訂閱主題");
+    this.appendStatementInput("statement")
+        .setCheck(null)
+        .appendField("當收到 MQTT 訊息時");
+    this.setInputsInline(true); // 同行顯示
+    this.setColour(345); // 設定積木顏色
+    this.setTooltip("訂閱指定的 MQTT 主題，並在收到訊息時執行動作");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['amani_mqtt_received_string'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("收到的訊息字串");
+    this.setOutput(true, "String"); // 此積木返回字串型態
+    this.setColour(345); // 設定積木顏色
+    this.setTooltip("取得收到的 MQTT 訊息字串");
+    this.setHelpUrl("");
+  }
+};
+

@@ -664,20 +664,30 @@ Blockly.Blocks['amani_adafruit_io_mqtt_init'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Adafruit IO MQTT 初始化");
-    this.appendValueInput("USERNAME")
+    this.appendValueInput("WIFI_SSID")
         .setCheck("String")
-        .appendField("使用者名稱");
-    this.appendValueInput("KEY")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("WiFi名稱");
+    this.appendValueInput("WIFI_PASS")
         .setCheck("String")
-        .appendField("金鑰");
-    this.setInputsInline(false);
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("WiFi密碼");
+    this.appendValueInput("IO_USERNAME")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IO 使用者名稱");
+    this.appendValueInput("IO_KEY")
+        .setCheck("String")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("IO 金鑰");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(345); // 設置顏色為 345
-    this.setTooltip("初始化 Adafruit IO MQTT，需提供使用者名稱與金鑰");
+    this.setColour(345); // 設定積木顏色
+    this.setTooltip("初始化 Adafruit IO MQTT，並設置 WiFi 和認證資訊");
     this.setHelpUrl("");
   }
 };
+
 
 Blockly.Blocks['amani_adafruit_io_publish'] = {
   init: function() {

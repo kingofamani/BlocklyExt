@@ -489,37 +489,39 @@ Blockly.Arduino['_02amani_linepushapi_msg'] = function(block) {
 
 Blockly.JavaScript['amani_adafruit_io_mqtt_init'] = function(block) {
   // 獲取輸入值
-  var username = Blockly.Arduino.valueToCode(block, 'USERNAME', Blockly.Arduino.ORDER_ATOMIC);
-  var key = Blockly.Arduino.valueToCode(block, 'KEY', Blockly.Arduino.ORDER_ATOMIC);
+  var wifi_ssid = Blockly.Arduino.valueToCode(block, 'WIFI_SSID', Blockly.Arduino.ORDER_ATOMIC);
+  var wifi_pass = Blockly.Arduino.valueToCode(block, 'WIFI_PASS', Blockly.Arduino.ORDER_ATOMIC);
+  var io_username = Blockly.Arduino.valueToCode(block, 'IO_USERNAME', Blockly.Arduino.ORDER_ATOMIC);
+  var io_key = Blockly.Arduino.valueToCode(block, 'IO_KEY', Blockly.Arduino.ORDER_ATOMIC);
 
-  // 1. Blockly.Arduino.definitions: 定義區
-  Blockly.Arduino.definitions_['define_adafruitio'] = `
-    #include <AdafruitIO_WiFi.h>
-    #define IO_USERNAME ${username}
-    #define IO_KEY ${key}
-    AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
-  `;
+  // 定義 WiFi 設定
+  Blockly.Arduino.definitions_['wifi_ssid'] = '#define WIFI_SSID ' + wifi_ssid + '\n';
+  Blockly.Arduino.definitions_['wifi_pass'] = '#define WIFI_PASS ' + wifi_pass + '\n';
 
-  // 2. Blockly.Arduino.setups: 初始化區
-  Blockly.Arduino.setups_['setup_adafruitio'] = `
-    io.connect();
-    while (io.status() < AIO_CONNECTED) {
-      Serial.print(".");
-      delay(500);
-    }
-  `;
+  // 定義 Adafruit IO 設定
+  Blockly.Arduino.definitions_['io_username'] = '#define IO_USERNAME ' + io_username + '\n';
+  Blockly.Arduino.definitions_['io_key'] = '#define IO_KEY ' + io_key + '\n';
+  Blockly.Arduino.definitions_['include_adafruitio'] =
+    '#include <AdafruitIO_WiFi.h>\n' +
+    '#include <WiFi.h>';
+  Blockly.Arduino.definitions_['define_io'] =
+    'AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);';
 
-  // 3. Blockly.Arduino.functions: 函數宣告區
-  // 本範例中不需要額外函數，如有可添加
+  // setup 區域
+  Blockly.Arduino.setups_['connect_io'] =
+    'io.connect();\n' +
+    'while (io.status() < AIO_CONNECTED) {\n' +
+    '  delay(500);\n' +
+    '}';
 
-  // 4. Blockly.Arduino.loops: 主程式迴圈區
   Blockly.Arduino.loops_['loop_adafruitio'] = `
     io.run();
   `;
 
-  // 返回空字串，因為程式碼已分配到 loops 區域
+  // 此積木無需返回其他程式碼
   return '';
 };
+
 
 Blockly.JavaScript['amani_adafruit_io_publish'] = function(block) {
   // 獲取輸入值

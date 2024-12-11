@@ -254,15 +254,25 @@
   </category>
   
   <category name="cat_adafruitio" colour="345">
-  <block type="amani_adafruit_io_mqtt_init">
-    <value name="USERNAME">
+    <block type="amani_adafruit_io_mqtt_init">
+    <value name="WIFI_SSID">
       <shadow type="text">
-        <field name="TEXT">"您的使用者名稱"</field>
+        <field name="TEXT">Your_SSID</field>
       </shadow>
     </value>
-    <value name="KEY">
+    <value name="WIFI_PASS">
       <shadow type="text">
-        <field name="TEXT">"您的金鑰"</field>
+        <field name="TEXT">Your_PASSWORD</field>
+      </shadow>
+    </value>
+    <value name="IO_USERNAME">
+      <shadow type="text">
+        <field name="TEXT">Your_Username</field>
+      </shadow>
+    </value>
+    <value name="IO_KEY">
+      <shadow type="text">
+        <field name="TEXT">Your_IO_Key</field>
       </shadow>
     </value>
   </block>
@@ -283,13 +293,13 @@
   <block type="amani_mqtt_subscribe">
     <value name="feedname">
       <shadow type="text">
-        <field name="TEXT">home/light/status</field>
+        <field name="TEXT">YOUR_FEED_NAME</field>
       </shadow>
     </value>
   </block>
   
   <block type="amani_mqtt_received_string"></block>
-</category>
+  </category>
 </category>
 
 

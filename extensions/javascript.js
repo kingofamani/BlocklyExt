@@ -489,8 +489,8 @@ Blockly.Arduino['_02amani_linepushapi_msg'] = function(block) {
 
 Blockly.JavaScript['amani_adafruit_io_mqtt_init'] = function(block) {
   // 獲取輸入值
-  var username = Blockly.JavaScript.valueToCode(block, 'USERNAME', Blockly.JavaScript.ORDER_ATOMIC);
-  var key = Blockly.JavaScript.valueToCode(block, 'KEY', Blockly.JavaScript.ORDER_ATOMIC);
+  var username = Blockly.Arduino.valueToCode(block, 'USERNAME', Blockly.Arduino.ORDER_ATOMIC);
+  var key = Blockly.Arduino.valueToCode(block, 'KEY', Blockly.Arduino.ORDER_ATOMIC);
 
   // 1. Blockly.Arduino.definitions: 定義區
   Blockly.Arduino.definitions_['define_adafruitio'] = `
@@ -523,8 +523,8 @@ Blockly.JavaScript['amani_adafruit_io_mqtt_init'] = function(block) {
 
 Blockly.JavaScript['amani_adafruit_io_publish'] = function(block) {
   // 獲取輸入值
-  var feedName = Blockly.JavaScript.valueToCode(block, 'FEED_NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  var message = Blockly.JavaScript.valueToCode(block, 'MESSAGE', Blockly.JavaScript.ORDER_ATOMIC);
+  var feedName = Blockly.Arduino.valueToCode(block, 'FEED_NAME', Blockly.Arduino.ORDER_ATOMIC);
+  var message = Blockly.Arduino.valueToCode(block, 'MESSAGE', Blockly.Arduino.ORDER_ATOMIC);
 
   // 為每個積木生成獨立的固定 timestamp
   if (!block.fixedTimestamp) {
@@ -552,7 +552,7 @@ Blockly.JavaScript['amani_adafruit_io_publish'] = function(block) {
 
 Blockly.JavaScript['amani_mqtt_subscribe'] = function(block) {
   // 獲取輸入值
-  var feedName = Blockly.JavaScript.valueToCode(block, 'feedname', Blockly.JavaScript.ORDER_ATOMIC);
+  var feedName = Blockly.Arduino.valueToCode(block, 'feedname', Blockly.Arduino.ORDER_ATOMIC);
 
   // 為每個積木生成獨立的固定 timestamp
   if (!block.fixedTimestamp) {
@@ -565,7 +565,7 @@ Blockly.JavaScript['amani_mqtt_subscribe'] = function(block) {
   var callbackFunctionName = "handleMessage_" + timestamp;
 
   // 嵌套的程式碼
-  var statements_statement = Blockly.JavaScript.statementToCode(block, 'statement');
+  var statements_statement = Blockly.Arduino.statementToCode(block, 'statement');
 
   // 1. Blockly.Arduino.definitions: 定義區
   Blockly.Arduino.definitions_['define_feed_' + feedName] =
@@ -586,7 +586,10 @@ Blockly.JavaScript['amani_mqtt_subscribe'] = function(block) {
 
 Blockly.JavaScript['amani_mqtt_received_string'] = function(block) {
   var code = "data->value()";
-  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+
+
 
 

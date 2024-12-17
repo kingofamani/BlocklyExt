@@ -487,7 +487,7 @@ Blockly.Arduino['_02amani_linepushapi_msg'] = function(block) {
 =========================================
 */
 
-Blockly.JavaScript['amani_adafruit_io_mqtt_init'] = function(block) {
+Blockly.Arduino['amani_adafruit_io_mqtt_init'] = function(block) {
   // 獲取輸入值
   var wifi_ssid = Blockly.Arduino.valueToCode(block, 'WIFI_SSID', Blockly.Arduino.ORDER_ATOMIC);
   var wifi_pass = Blockly.Arduino.valueToCode(block, 'WIFI_PASS', Blockly.Arduino.ORDER_ATOMIC);
@@ -523,7 +523,7 @@ Blockly.JavaScript['amani_adafruit_io_mqtt_init'] = function(block) {
 };
 
 
-Blockly.JavaScript['amani_adafruit_io_publish'] = function(block) {
+Blockly.Arduino['amani_adafruit_io_publish'] = function(block) {
   // 獲取輸入值
   var feedName = Blockly.Arduino.valueToCode(block, 'FEED_NAME', Blockly.Arduino.ORDER_ATOMIC);
   var message = Blockly.Arduino.valueToCode(block, 'MESSAGE', Blockly.Arduino.ORDER_ATOMIC);
@@ -552,7 +552,7 @@ Blockly.JavaScript['amani_adafruit_io_publish'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['amani_mqtt_subscribe'] = function(block) {
+Blockly.Arduino['amani_mqtt_subscribe'] = function(block) {
   // 獲取輸入值
   var feedName = Blockly.Arduino.valueToCode(block, 'feedname', Blockly.Arduino.ORDER_ATOMIC);
 
@@ -586,10 +586,13 @@ Blockly.JavaScript['amani_mqtt_subscribe'] = function(block) {
   return '';
 };
 
-Blockly.JavaScript['amani_mqtt_received_string'] = function(block) {
+Blockly.Arduino['amani_mqtt_received_string'] = function(block) {
   var code = "data->value()";
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
+
+
+
 
 
 

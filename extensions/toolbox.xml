@@ -170,6 +170,21 @@
 	<statement name="statement"></statement>
 </block>
 
+
+<block type="_02amani_uart_get"></block>
+
+<block type="_03amani_uart_send">
+	<field name="serial">Serial</field>
+	<field name="send">傳送資料(print)</field>
+	<value name="msg">
+		<shadow type="text">
+			<field name="TEXT"></field>
+		</shadow>
+	</value>
+</block>
+  
+  </category>
+
 <category name="cat_test" colour="#995BA5">
 		<block type="amani_fake_ina226_init">
     <field name="inachannel">0</field>
@@ -217,21 +232,7 @@
     </value>
   </block>
   <block type="amani_fake_yfs201_flow"></block>
-</block>
-
-<block type="_02amani_uart_get"></block>
-
-<block type="_03amani_uart_send">
-	<field name="serial">Serial</field>
-	<field name="send">傳送資料(print)</field>
-	<value name="msg">
-		<shadow type="text">
-			<field name="TEXT"></field>
-		</shadow>
-	</value>
-</block>
-  
-  </category>
+</category>
 
 <category name="cat_4x4keypad" colour="#a55b80">
   <block type="_01amani_i2ckeypad_init"></block>
